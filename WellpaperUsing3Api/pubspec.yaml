@@ -33,6 +33,17 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+    flutter_staggered_grid_view: any
+    http: any
+    random_color: any
+    cached_network_image: any
+    image_downloader: any
+    fluttertoast: any
+    connectivity: any
+    wallpaper_manager: any
+    flutter_cache_manager: any
+    url_launcher: any
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
