@@ -139,9 +139,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           elevation: 0.0,
           centerTitle: true,
           title: Text(
-            'Wallsky',
+            'All Wellpaper',
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontFamily: 'Carrington',
               fontSize: 42.0,
             ),
@@ -159,180 +159,184 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
           ],
         ),
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            // SEARCH BAR
+        body: Container(
+          color: Colors.black87,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              // SEARCH BAR
 
-            (showSearchBar)
-                ? Expanded(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: TextField(
-                        controller: searchTextController,
-                        onSubmitted: (value) {
-                          setState(() {
-                            searchText = searchTextController.text
-                                .toString()
-                                .trim()
-                                .replaceAll(' ', '+');
-                            urlList.replaceRange(0, urlList.length, [
-                              'https://api.pexels.com/v1/search?query=$searchText&page=1&per_page=100&order_by=popular',
-                              //'https://api.pexels.com/v1/search?query=$searchText',
-                              //'https://api.unsplash.com/search/photos?quer
-                              // y=$searchText',
-                              'https://api.unsplash.com/search/photos?query=$searchText&page=1&per_page=100&order_by=popular',
-                              'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
-                            ]);
-                            // setting all Category Items as unselected
-                            for (int i = 0;
-                                i < (isCategorySelectedList.length);
-                                i++) isCategorySelectedList[i] = false;
-                            print(
-                                '$searchText  ${urlList[currSource]}  $urlList');
-                          });
-                        },
-                        textAlignVertical: TextAlignVertical.bottom,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: new BorderRadius.circular(25.0),
-                            //gapPadding: 20.0,
-                            //borderSide: new BorderSide(),
-                          ),
-                          hintText: 'Search here..',
-                          suffixIcon: IconButton(
-                            icon: Icon(Icons.arrow_forward),
-                            onPressed: () {
-                              setState(() {
-                                searchText = searchTextController.text
-                                    .toString()
-                                    .replaceAll(' ', '+');
-                                urlList.replaceRange(0, urlList.length, [
-                                  'https://api.pexels.com/v1/search?query=$searchText&page=1&per_page=100&order_by=popular',
-                                  //'https://api.pexels.com/v1/search?query=$searchText',
-                                  //'https://api.unsplash.com/search/photos?query=$searchText',
-                                  'https://api.unsplash.com/search/photos?query=$searchText&page=1&per_page=100&order_by=popular',
-                                  'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
-                                ]);
-                                print(
-                                    '$searchText  ${urlList[currSource]}  $urlList');
-                                FocusScope.of(context).requestFocus(
-                                    FocusNode()); // for hiding keyboard after use
-
-                                // setting all Category Items as unselected
-                                for (int i = 0;
-                                    i < (isCategorySelectedList.length);
-                                    i++) isCategorySelectedList[i] = false;
-                              });
-                            },
-                          ),
-                        ),
-                        textInputAction: TextInputAction.search,
-                      ),
-                    ),
-                  )
-                : Container(),
-
-            // CATEGORY LIST
-
-            Expanded(
-              flex: 1,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: categoryList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 4.0, vertical: 6.0),
-                        child: Container(
-                          // Building a RandomColored Placeholder Container for Category items until Image.network is fetched in case of slow network.
-                          height: 50.0,
-                          width: 65.0,
-                          decoration: BoxDecoration(
-                            color: RandomColor().randomColor(),
-                            border: Border.all(
-                              color: Colors.teal, //RandomColor().randomColor(),
-                              width:
-                                  (isCategorySelectedList[index]) ? 4.0 : 0.0,
+              (showSearchBar)
+                  ? Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: TextField(
+                          controller: searchTextController,
+                          onSubmitted: (value) {
+                            setState(() {
+                              searchText = searchTextController.text
+                                  .toString()
+                                  .trim()
+                                  .replaceAll(' ', '+');
+                              urlList.replaceRange(0, urlList.length, [
+                                'https://api.pexels.com/v1/search?query=$searchText&page=1&per_page=100&order_by=popular',
+                                //'https://api.pexels.com/v1/search?query=$searchText',
+                                //'https://api.unsplash.com/search/photos?quer
+                                // y=$searchText',
+                                'https://api.unsplash.com/search/photos?query=$searchText&page=1&per_page=100&order_by=popular',
+                                'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
+                              ]);
+                              // setting all Category Items as unselected
+                              for (int i = 0;
+                                  i < (isCategorySelectedList.length);
+                                  i++) isCategorySelectedList[i] = false;
+                              print(
+                                  '$searchText  ${urlList[currSource]}  $urlList');
+                            });
+                          },
+                          textAlignVertical: TextAlignVertical.bottom,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: new BorderRadius.circular(25.0),
+                              //gapPadding: 20.0,
+                              //borderSide: new BorderSide(),
                             ),
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              categoryUrlList[index],
-                              fit: BoxFit.fill,
+                            hintText: 'Search here..',
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.arrow_forward),
+                              onPressed: () {
+                                setState(() {
+                                  searchText = searchTextController.text
+                                      .toString()
+                                      .replaceAll(' ', '+');
+                                  urlList.replaceRange(0, urlList.length, [
+                                    'https://api.pexels.com/v1/search?query=$searchText&page=1&per_page=100&order_by=popular',
+                                    //'https://api.pexels.com/v1/search?query=$searchText',
+                                    //'https://api.unsplash.com/search/photos?query=$searchText',
+                                    'https://api.unsplash.com/search/photos?query=$searchText&page=1&per_page=100&order_by=popular',
+                                    'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
+                                  ]);
+                                  print(
+                                      '$searchText  ${urlList[currSource]}  $urlList');
+                                  FocusScope.of(context).requestFocus(
+                                      FocusNode()); // for hiding keyboard after use
+
+                                  // setting all Category Items as unselected
+                                  for (int i = 0;
+                                      i < (isCategorySelectedList.length);
+                                      i++) isCategorySelectedList[i] = false;
+                                });
+                              },
                             ),
                           ),
+                          textInputAction: TextInputAction.search,
                         ),
                       ),
-                      InkWell(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            '${categoryList[index]}',
-                            style: TextStyle(
-                              fontFamily: 'Carrington',
-                              fontSize: 25.0,
-                              color: Colors.white,
+                    )
+                  : Container(),
+
+              // CATEGORY LIST
+
+              Expanded(
+                flex: 1,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categoryList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 4.0, vertical: 6.0),
+                          child: Container(
+                            // Building a RandomColored Placeholder Container for Category items until Image.network is fetched in case of slow network.
+                            height: 50.0,
+                            width: 65.0,
+                            decoration: BoxDecoration(
+                              color: RandomColor().randomColor(),
+                              border: Border.all(
+                                color:
+                                    Colors.teal, //RandomColor().randomColor(),
+                                width:
+                                    (isCategorySelectedList[index]) ? 4.0 : 0.0,
+                              ),
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.network(
+                                categoryUrlList[index],
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
                         ),
-                        onTap: () {
-                          setState(() {
-                            searchText = categoryList[index];
-                            urlList.replaceRange(0, urlList.length, [
-                              'https://api.pexels.com/v1/search?query=$searchText&page=1&per_page=100&order_by=popular',
-                              //'https://api.pexels.com/v1/search?query=$searchText',
-                              //'https://api.unsplash.com/search/photos?query=$searchText',
-                              'https://api.unsplash.com/search/photos?query=$searchText&page=1&per_page=100&order_by=popular',
-                              'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
-                            ]);
-                            // setting all Category Items as unselected
-                            for (int i = 0;
-                                i < (isCategorySelectedList.length);
-                                i++) isCategorySelectedList[i] = false;
-                            isCategorySelectedList[index] = true;
-                            // Clearing off searchTextController when not in use
-                            searchTextController.clear();
-                          });
-                        },
-                      ),
-                    ],
-                  );
-                },
+                        InkWell(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '${categoryList[index]}',
+                              style: TextStyle(
+                                fontFamily: 'Carrington',
+                                fontSize: 25.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              searchText = categoryList[index];
+                              urlList.replaceRange(0, urlList.length, [
+                                'https://api.pexels.com/v1/search?query=$searchText&page=1&per_page=100&order_by=popular',
+                                //'https://api.pexels.com/v1/search?query=$searchText',
+                                //'https://api.unsplash.com/search/photos?query=$searchText',
+                                'https://api.unsplash.com/search/photos?query=$searchText&page=1&per_page=100&order_by=popular',
+                                'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
+                              ]);
+                              // setting all Category Items as unselected
+                              for (int i = 0;
+                                  i < (isCategorySelectedList.length);
+                                  i++) isCategorySelectedList[i] = false;
+                              isCategorySelectedList[index] = true;
+                              // Clearing off searchTextController when not in use
+                              searchTextController.clear();
+                            });
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
-            ),
 
-            Expanded(
-              flex: 10,
-              child: FutureBuilder(
-                future: httpRequestList[currSource],
-                builder: (BuildContext context, AsyncSnapshot snap) {
-                  if (networkSubscription == ConnectivityResult.none)
-                    return Image.asset('assets/no_internet_connection.jpeg');
-                  else if (snap.connectionState == ConnectionState.waiting)
-                    return Center(
-                        child: CircularProgressIndicator(
-                      valueColor:
-                          new AlwaysStoppedAnimation<Color>(Colors.black),
-                      strokeWidth: 2.0,
-                    ));
-                  else if (snap.connectionState == ConnectionState.done)
-                    return photoGrid(snap);
-                  else
-                    return Text('ERROR');
-                },
+              Expanded(
+                flex: 10,
+                child: FutureBuilder(
+                  future: httpRequestList[currSource],
+                  builder: (BuildContext context, AsyncSnapshot snap) {
+                    if (networkSubscription == ConnectivityResult.none)
+                      return Image.asset('assets/no_internet_connection.jpeg');
+                    else if (snap.connectionState == ConnectionState.waiting)
+                      return Center(
+                          child: CircularProgressIndicator(
+                        valueColor:
+                            new AlwaysStoppedAnimation<Color>(Colors.black),
+                        strokeWidth: 2.0,
+                      ));
+                    else if (snap.connectionState == ConnectionState.done)
+                      return photoGrid(snap);
+                    else
+                      return Text('ERROR');
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
