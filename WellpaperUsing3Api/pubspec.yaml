@@ -63,7 +63,7 @@ flutter:
    - assets/icon_pexels.png
    - assets/icon_unsplash.png
    - assets/icon_pixabay.png
-   - assets/no_internet_connection.jpeg
+   - assets/1.jpg
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

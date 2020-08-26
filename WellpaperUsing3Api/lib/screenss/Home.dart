@@ -13,6 +13,7 @@ import 'package:WellpaperUsing3Api/screenss/ImageScreen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:WellpaperUsing3Api/constantsvariable.dart';
 import 'package:WellpaperUsing3Api/apiKeys.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -150,7 +151,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               onPressed: () {
                 setState(() {
                   showSearchBar = !showSearchBar;
-                  // Clearing off searchTextController when not in use
                   searchTextController.clear();
                 });
               },
@@ -165,8 +165,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // SEARCH BAR
-
               (showSearchBar)
                   ? Expanded(
                       flex: 1,
@@ -188,7 +186,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 'https://api.unsplash.com/search/photos?query=$searchText&page=1&per_page=100&order_by=popular',
                                 'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
                               ]);
-                              // setting all Category Items as unselected
                               for (int i = 0;
                                   i < (isCategorySelectedList.length);
                                   i++) isCategorySelectedList[i] = false;
@@ -200,8 +197,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: new BorderRadius.circular(25.0),
-                              //gapPadding: 20.0,
-                              //borderSide: new BorderSide(),
                             ),
                             hintText: 'Search here..',
                             suffixIcon: IconButton(
@@ -223,7 +218,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   FocusScope.of(context).requestFocus(
                                       FocusNode()); // for hiding keyboard after use
 
-                                  // setting all Category Items as unselected
                                   for (int i = 0;
                                       i < (isCategorySelectedList.length);
                                       i++) isCategorySelectedList[i] = false;
@@ -236,9 +230,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       ),
                     )
                   : Container(),
-
-              // CATEGORY LIST
-
               Expanded(
                 flex: 1,
                 child: ListView.builder(
@@ -252,14 +243,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 4.0, vertical: 6.0),
                           child: Container(
-                            // Building a RandomColored Placeholder Container for Category items until Image.network is fetched in case of slow network.
                             height: 50.0,
                             width: 65.0,
                             decoration: BoxDecoration(
                               color: RandomColor().randomColor(),
                               border: Border.all(
-                                color:
-                                    Colors.teal, //RandomColor().randomColor(),
+                                color: Colors.teal,
                                 width:
                                     (isCategorySelectedList[index]) ? 4.0 : 0.0,
                               ),
@@ -312,7 +301,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   },
                 ),
               ),
-
               Expanded(
                 flex: 10,
                 child: FutureBuilder(
@@ -385,13 +373,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
                         ]);
 
-                        // setting all Category Items as unselected
                         for (int i = 0;
                             i < (isCategorySelectedList.length);
                             i++) isCategorySelectedList[i] = false;
 
-                        Navigator.of(context)
-                            .pop(); // it slides back drawer on clicking any option
+                        Navigator.of(context).pop();
                       });
                     },
                   ),
@@ -425,13 +411,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
                         ]);
 
-                        // setting all Category Items as unselected
                         for (int i = 0;
                             i < (isCategorySelectedList.length);
                             i++) isCategorySelectedList[i] = false;
 
-                        Navigator.of(context)
-                            .pop(); // it slides back drawer on clicking any option
+                        Navigator.of(context).pop();
                       });
                     },
                   ),
@@ -479,26 +463,29 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 Divider(
                   color: Colors.black,
                 ),
-                Container(
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.star,
-                      color: Colors.yellow,
+                InkWell(
+                  onTap: _launchURL(),
+                  child: Container(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.star,
+                        color: Colors.yellow,
+                      ),
+                      title: Text('Rate Our Application'),
                     ),
-                    title: Text('Rate Our Application'),
-                    //FUNCTION RATE APPLICATION
-                    onTap: () {},
                   ),
                 ),
-                Container(
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.share,
-                      color: Colors.yellow,
+                InkWell(
+                  // FUNCTION SHARE APP
+                  onTap: () {},
+                  child: Container(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.share,
+                        color: Colors.yellow,
+                      ),
+                      title: Text('Share our Application'),
                     ),
-                    title: Text('Share our Application'),
-                    // FUNCTION SHARE APP
-                    onTap: () {},
                   ),
                 ),
               ],
@@ -512,13 +499,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   photoGrid(AsyncSnapshot snap) {
     http.Response response = snap.data;
 
-    //print('TEST snap.data:: ${snap.data}');
-    //print('TEST snap.data.runtimeType:: ${snap.data.runtimeType}');
-    //print(urlList);
     print(urlList[currSource]);
-    //print('TEST response.body.toString():: ${response.body.toString()}');
-
-    //final photoUnits = pexelsUnitsFromJson(response.body.toString());
 
     var photoUnits;
     int itemCount;
@@ -538,7 +519,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
     print('itemCount :: $itemCount');
 
-    // TODO: Solve no parent error for StaggeredGridView... issue visible after to much scrolling and navigating back from ImagePage()
     return (itemCount == 0)
         ? Center(
             child: Text(
@@ -594,31 +574,21 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     },
                   ),
                 ),
-                /*Image.network(
-            photoUnits.photos[index].src.medium,
-            loadingBuilder: (BuildContext context, Widget child,
-                ImageChunkEvent loadingProgress) {
-              if (loadingProgress == null) return child;
-              return Container(
-                width: MediaQuery.of(context).size.width / 2,
-                height: MediaQuery.of(context).size.width * 0.7,
-                color: RandomColor().randomColor(),
-                child: Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes
-                        : null,
-                  ),
-                ),
-              );
-            },
-          )*/
               ),
             ),
             staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
             mainAxisSpacing: 8.0,
             crossAxisSpacing: 8.0,
           );
+  }
+}
+
+_launchURL() async {
+  const url =
+      'https://play.google.com/store/apps/details?id=com.example.WellpaperUsing3Api';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }

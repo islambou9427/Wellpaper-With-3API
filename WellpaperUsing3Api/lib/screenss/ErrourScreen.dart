@@ -42,29 +42,38 @@ class _ErrorScreenState extends State<ErrorScreen> {
           elevation: 0.0,
           centerTitle: true,
           title: Text(
-            'Wallsky',
+            'All wallpaper',
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontFamily: 'Carrington',
               fontSize: 42.0,
             ),
           ),
         ),
-        body: Column(
-          children: [
-            Center(
-              child: Container(
-                child: Image.asset(
-                  'assets/no_internet_connection.jpeg',
-                  fit: BoxFit.fill,
+        body: Container(
+          color: Colors.black87,
+          child: Column(
+            children: [
+              Center(
+                child: Container(
+                  child: Image.asset(
+                    'assets/1.jpg',
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
-            ),
-            Text(
-              '\n\nOOPS, NO INTERNET CONNECTION!!\n\nPlease connect to the Internet.',
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  "Please Connect to internet or wifi",
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
