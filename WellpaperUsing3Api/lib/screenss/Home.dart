@@ -8,7 +8,6 @@ import 'dart:io';
 import 'package:WellpaperUsing3Api/apiDataFromJson/pexelsData.dart';
 import 'package:WellpaperUsing3Api/apiDataFromJson/pixabayData.dart';
 import 'package:WellpaperUsing3Api/apiDataFromJson/unSplashData.dart';
-import 'package:WellpaperUsing3Api/screenss/AboutApp.dart';
 import 'package:WellpaperUsing3Api/screenss/ErrourScreen.dart';
 import 'package:WellpaperUsing3Api/screenss/ImageScreen.dart';
 import 'package:connectivity/connectivity.dart';
@@ -350,7 +349,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0, left: 20.0, top: 40.0),
             child: Text(
-              'Source :',
+              'Source of Wellpaper :',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
             ),
           ),
@@ -476,20 +475,33 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               .pop(); // it slides back drawer on clicking any option
                         });
                       }),
-                )
+                ),
+                Divider(
+                  color: Colors.black,
+                ),
+                Container(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.star,
+                      color: Colors.yellow,
+                    ),
+                    title: Text('Rate Our Application'),
+                    //FUNCTION RATE APPLICATION
+                    onTap: () {},
+                  ),
+                ),
+                Container(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.share,
+                      color: Colors.yellow,
+                    ),
+                    title: Text('Share our Application'),
+                    // FUNCTION SHARE APP
+                    onTap: () {},
+                  ),
+                ),
               ],
-            ),
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.info,
-              color: Colors.black,
-            ),
-            title: Text('About'),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) => About(),
-              ),
             ),
           ),
         ],

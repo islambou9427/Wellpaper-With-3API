@@ -126,14 +126,6 @@ class _ImageScreenState extends State<ImageScreen>
               },
               child: Image.network(
                 largeImage,
-                //curPhoto.src.large,
-                //curPhoto.src.portrait,
-                //curPhoto.src.large2X,
-                //curPhoto.src.medium,
-                //curPhoto.src.tiny,
-                //curPhoto.src.small,
-                //curPhoto.src.landscape,
-
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent loadingProgress) {
                   if (loadingProgress == null) return child;
@@ -239,13 +231,11 @@ class _ImageScreenState extends State<ImageScreen>
                   color: Colors.grey,
                 ),
               ),
-              // NOT used CircleAvatar because CachedNetworkImage doesn't  work with it
               SizedBox(
                 width: 10.0,
               ),
               Flexible(
                 child: Column(
-                  //mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
@@ -368,8 +358,6 @@ class _ImageScreenState extends State<ImageScreen>
                     ),
                   )
                 : Container(),
-            //Text('page url "links"{"html" : https://unsplash.com/photos/oyBxvFU3SJI'),
-            //Text('photographer url "user"{"links"{"html" : https://unsplash.com/@yuli_superson'),
           ],
         ),
       ),
