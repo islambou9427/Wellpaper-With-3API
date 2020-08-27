@@ -123,7 +123,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         //'https://api.pexels.com/v1/search?query=$searchText',
         urlList[0],
 
-        // Send authorization headers to the backend.
         headers: {
           HttpHeaders.authorizationHeader: apiKeyList[0],
         },
@@ -139,7 +138,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           elevation: 0.0,
           centerTitle: true,
           title: Text(
-            'All Wallpaper',
+            'Beautiful Wallpaper',
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'Carrington',
@@ -195,12 +194,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           },
                           textAlignVertical: TextAlignVertical.bottom,
                           decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
                             border: OutlineInputBorder(
                               borderRadius: new BorderRadius.circular(25.0),
                             ),
                             hintText: 'Search here..',
                             suffixIcon: IconButton(
-                              icon: Icon(Icons.arrow_forward),
+                              icon: Icon(Icons.arrow_forward,
+                                  color: Colors.black),
                               onPressed: () {
                                 setState(() {
                                   searchText = searchTextController.text
