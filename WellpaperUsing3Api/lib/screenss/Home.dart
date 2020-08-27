@@ -97,7 +97,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
     ];
 
-    // ignore: unused_local_variable
     List<String> apiKeyList = [
       '563492ad6f9170000100000152591bc299184cd09df977f52b8aff88',
       'xocBhJ_Jn-XGIgJNpqyFdR6GAcm6zS-4vFhOfkSoZPs',
@@ -140,7 +139,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           elevation: 0.0,
           centerTitle: true,
           title: Text(
-            'All Wellpaper',
+            'All Wallpaper',
             style: TextStyle(
               color: Colors.white,
               fontFamily: 'Carrington',
@@ -216,9 +215,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   ]);
                                   print(
                                       '$searchText  ${urlList[currSource]}  $urlList');
-                                  FocusScope.of(context).requestFocus(
-                                      FocusNode()); // for hiding keyboard after use
-
+                                  FocusScope.of(context)
+                                      .requestFocus(FocusNode());
                                   for (int i = 0;
                                       i < (isCategorySelectedList.length);
                                       i++) isCategorySelectedList[i] = false;
@@ -287,12 +285,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 'https://api.unsplash.com/search/photos?query=$searchText&page=1&per_page=100&order_by=popular',
                                 'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
                               ]);
-                              // setting all Category Items as unselected
                               for (int i = 0;
                                   i < (isCategorySelectedList.length);
                                   i++) isCategorySelectedList[i] = false;
                               isCategorySelectedList[index] = true;
-                              // Clearing off searchTextController when not in use
                               searchTextController.clear();
                             });
                           },
@@ -338,7 +334,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           Padding(
             padding: const EdgeInsets.only(bottom: 20.0, left: 20.0, top: 40.0),
             child: Text(
-              'Source of Wellpaper :',
+              'Source of Wallpaper :',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
             ),
           ),
@@ -593,8 +589,8 @@ _launchURL() async {
 
 Future<void> share() async {
   await FlutterShare.share(
-      title: 'All Wellpaper App',
-      text: "All Wellpaper application || Beautiful Wellpaper",
+      title: 'All Wallpaper App',
+      text: "All Wallpaper application || Beautiful Wallpaper",
       linkUrl:
           "https://play.google.com/store/apps/details?id=com.example.WellpaperUsing3Api",
       chooserTitle: 'Where You Want To Share');

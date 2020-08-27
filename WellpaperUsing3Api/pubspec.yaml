@@ -39,10 +39,18 @@ dependencies:
   wallpaper_manager: any
   flutter_cache_manager: any
   url_launcher: any
+  flutter_launcher_icons: ^0.7.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon_pexels.png"
+
 
   
 
