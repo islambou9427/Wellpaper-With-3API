@@ -42,10 +42,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
       print("Connected to Mobile Network");
-      //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context)=>Home()));
     } else if (connectivityResult == ConnectivityResult.wifi) {
       print("Connected to WiFi");
-      //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context)=>Home()));
     } else {
       print("Unable to connect. Please Check Internet Connection");
       Navigator.of(context).pushReplacement(
@@ -53,24 +51,34 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     }
   }
 
-  BannerAd mybanner;
+  InterstitialAd iner;
 
-  BannerAd BuildBannerAd() {
-    return BannerAd(
+  InterstitialAd buildinerAd() {
+    return InterstitialAd(
         //ads Id "ca-app-pub-9245041358823525/2464595860"
-        adUnitId: BannerAd.testAdUnitId,
-        size: AdSize.fullBanner,
+        adUnitId: "ca-app-pub-9245041358823525/9419341869",
         listener: (MobileAdEvent event) {
-          mybanner..show();
+          if (event == MobileAdEvent.failedToLoad) {
+            iner = buildinerAd()..load();
+          } else if (event == MobileAdEvent.loaded) {
+            iner..show();
+          } else if (event == MobileAdEvent.opened) {
+            print("oooopeeen");
+          } else if (event == MobileAdEvent.leftApplication) {
+            print("lefft");
+          }
         });
   }
 
   @override
   void initState() {
     super.initState();
-    //app ID "ca-app-pub-9245041358823525~9624722974"
-    FirebaseAdMob.instance.initialize(appId: FirebaseAdMob.testAppId);
-    mybanner = BuildBannerAd()..load();
+    //app ID"ca-app-pub-9245041358823525~9624722974"
+    FirebaseAdMob.instance
+        .initialize(appId: "ca-app-pub-9245041358823525~9624722974");
+    iner = buildinerAd()
+      ..load()
+      ..show();
 
     checkConnectivity();
     bool isRenew = false;
@@ -123,6 +131,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void dispose() {
     super.dispose();
+    iner.dispose();
 
     networkSubscription.cancel();
     searchTextController.dispose();

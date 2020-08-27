@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -32,6 +33,27 @@ class _ImageScreenState extends State<ImageScreen>
   );
   BoxFit imageFit = BoxFit.cover;
   bool isFitCover = true;
+
+  BannerAd mybanner;
+
+  BannerAd buildBannerAd() {
+    return BannerAd(
+        //ads Id "ca-app-pub-9245041358823525/2464595860"
+        adUnitId: "ca-app-pub-9245041358823525/2464595860",
+        size: AdSize.fullBanner,
+        listener: (MobileAdEvent event) {
+          mybanner..show();
+        });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseAdMob.instance
+        .initialize(appId: "ca-app-pub-9245041358823525~9624722974");
+    mybanner = buildBannerAd()..load();
+  }
 
   @override
   Widget build(BuildContext context) {
