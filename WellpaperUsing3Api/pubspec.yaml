@@ -42,12 +42,13 @@ dependencies:
   flutter_launcher_icons: ^0.7.5
   firebase_admob: ^0.9.3+4
   ads: ^1.7.3
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
+  change_app_package_name: ^0.1.2
 
 
 
