@@ -15,6 +15,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:WellpaperUsing3Api/constantsvariable.dart';
 import 'package:WellpaperUsing3Api/apiKeys.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -52,9 +53,24 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     }
   }
 
+  BannerAd mybanner;
+
+  BannerAd BuildBannerAd() {
+    return BannerAd(
+        //ads Id "ca-app-pub-9245041358823525/2464595860"
+        adUnitId: BannerAd.testAdUnitId,
+        size: AdSize.fullBanner,
+        listener: (MobileAdEvent event) {
+          mybanner..show();
+        });
+  }
+
   @override
   void initState() {
     super.initState();
+    //app ID "ca-app-pub-9245041358823525~9624722974"
+    FirebaseAdMob.instance.initialize(appId: FirebaseAdMob.testAppId);
+    mybanner = BuildBannerAd()..load();
 
     checkConnectivity();
     bool isRenew = false;
