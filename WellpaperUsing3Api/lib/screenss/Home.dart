@@ -452,8 +452,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               i < (isCategorySelectedList.length);
                               i++) isCategorySelectedList[i] = false;
 
-                          Navigator.of(context)
-                              .pop(); // it slides back drawer on clicking any option
+                          Navigator.of(context).pop();
                         });
                       }),
                 ),
