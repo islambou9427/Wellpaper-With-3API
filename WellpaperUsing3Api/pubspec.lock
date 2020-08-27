@@ -16,7 +16,7 @@ packages:
     source: hosted
     version: "2.0.0"
   cached_network_image:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: cached_network_image
       url: "https://pub.dartlang.org"
@@ -51,7 +51,7 @@ packages:
     source: hosted
     version: "1.14.13"
   connectivity:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: connectivity
       url: "https://pub.dartlang.org"
@@ -126,14 +126,21 @@ packages:
     source: hosted
     version: "0.5.0"
   flutter_cache_manager:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.1"
+  flutter_share:
+    dependency: "direct main"
+    description:
+      name: flutter_share
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2+1"
   flutter_staggered_grid_view:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_staggered_grid_view
       url: "https://pub.dartlang.org"
@@ -150,14 +157,14 @@ packages:
     source: sdk
     version: "0.0.0"
   fluttertoast:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: fluttertoast
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.0.2"
   http:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -171,7 +178,7 @@ packages:
     source: hosted
     version: "3.1.4"
   image_downloader:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: image_downloader
       url: "https://pub.dartlang.org"
@@ -283,7 +290,7 @@ packages:
     source: hosted
     version: "1.4.4"
   random_color:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: random_color
       url: "https://pub.dartlang.org"
@@ -372,7 +379,7 @@ packages:
     source: hosted
     version: "1.2.0"
   url_launcher:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: url_launcher
       url: "https://pub.dartlang.org"
@@ -421,7 +428,7 @@ packages:
     source: hosted
     version: "2.0.8"
   wallpaper_manager:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: wallpaper_manager
       url: "https://pub.dartlang.org"

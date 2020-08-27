@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -464,28 +465,25 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   color: Colors.black,
                 ),
                 InkWell(
-                  onTap: _launchURL(),
-                  child: Container(
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      title: Text('Rate Our Application'),
+                  onTap: _launchURL,
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.star,
+                      color: Colors.yellow,
                     ),
+                    title: Text('Rate Our Application'),
                   ),
                 ),
                 InkWell(
-                  // FUNCTION SHARE APP
-                  onTap: () {},
-                  child: Container(
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.share,
-                        color: Colors.yellow,
-                      ),
-                      title: Text('Share our Application'),
+                  onTap: () {
+                    share();
+                  },
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.share,
+                      color: Colors.yellow,
                     ),
+                    title: Text('Share With Friends'),
                   ),
                 ),
               ],
@@ -591,4 +589,13 @@ _launchURL() async {
   } else {
     throw 'Could not launch $url';
   }
+}
+
+Future<void> share() async {
+  await FlutterShare.share(
+      title: 'All Wellpaper App',
+      text: "All Wellpaper application || Beautiful Wellpaper",
+      linkUrl:
+          "https://play.google.com/store/apps/details?id=com.example.WellpaperUsing3Api",
+      chooserTitle: 'Where You Want To Share');
 }
