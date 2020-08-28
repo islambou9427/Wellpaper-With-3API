@@ -48,7 +48,6 @@ class _ImageScreenState extends State<ImageScreen>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     FirebaseAdMob.instance
         .initialize(appId: "ca-app-pub-9245041358823525~9624722974");

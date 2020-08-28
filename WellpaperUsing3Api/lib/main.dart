@@ -1,4 +1,3 @@
-import 'package:WellpaperUsing3Api/constantsvariable.dart';
 import 'package:WellpaperUsing3Api/screenss/Home.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: appName,
+      title: "Beautiful Wallpapers",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,

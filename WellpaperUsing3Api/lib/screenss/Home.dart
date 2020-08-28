@@ -121,6 +121,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       'https://pixabay.com/api/?q=$searchText&image_type=photo&pretty=true&page=1&per_page=100&order_by=popular',
     ];
 
+    // ignore: unused_local_variable
     List<String> apiKeyList = [
       '563492ad6f9170000100000152591bc299184cd09df977f52b8aff88',
       'xocBhJ_Jn-XGIgJNpqyFdR6GAcm6zS-4vFhOfkSoZPs',
